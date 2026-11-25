@@ -53,9 +53,9 @@ export const projects: Project[] = [
   // 1 — OPENEMR HEALTHCARE PLATFORM ------------------------------------------------
   {
     id: "openemr",
-    slug: "openemr-healthcare-platform",
-    title: "OpenEMR-Based Healthcare & EMR Platform",
-    shortTitle: "OpenEMR Healthcare Platform",
+    slug: "healthcare-emr-platform",
+    title: "Healthcare & EMR Platform",
+    shortTitle: "Healthcare & EMR Platform",
     tagline: "A custom clinical experience layered over OpenEMR for patients, providers and admins",
     categories: ["Healthcare", "Full Stack", "Frontend"],
     featured: true,
@@ -146,13 +146,13 @@ export const projects: Project[] = [
   // 2 — RITE CLINIC WELLNESS APP ------------------------------------------------
   {
     id: "rite-clinic",
-    slug: "rite-clinic",
-    title: "Rite Clinic — Healthcare & Wellness Platform",
-    shortTitle: "Rite Clinic Wellness App",
+    slug: "patient-wellness-mobile",
+    title: "Patient Health & Wellness Mobile App",
+    shortTitle: "Patient Wellness Mobile App",
     tagline: "A React Native companion app for appointments, wellness tracking and clinical forms",
     categories: ["Healthcare", "Mobile", "Full Stack"],
     featured: true,
-    priority: 2,
+    priority: 5,
     problem:
       "Patients needed a single mobile app to manage appointments, complete clinical paperwork, track wellness metrics and pay for services — instead of juggling phone calls, paper forms and separate portals.",
     users: ["Patients / clinic members"],
@@ -242,7 +242,7 @@ export const projects: Project[] = [
     tagline: "Real-time pose detection that counts reps and checks form, in the browser",
     categories: ["AI", "Frontend"],
     featured: true,
-    priority: 3,
+    priority: 6,
     problem:
       "Self-guided workouts have no feedback loop — people can't tell if a rep counted, or whether their form was safe, without a trainer watching. This project explores using real-time computer vision, in a browser, to close that loop.",
     users: ["Anyone exercising without a trainer present — a self-guided fitness use case"],
@@ -315,13 +315,13 @@ export const projects: Project[] = [
   // 4 — RITE TUTOR ------------------------------------------------
   {
     id: "rite-tutor",
-    slug: "rite-tutor",
-    title: "Rite Tutor — EdTech & Virtual Classroom Platform",
-    shortTitle: "Rite Tutor",
+    slug: "learning-management-platform",
+    title: "Learning Management & Virtual Classrooms",
+    shortTitle: "Learning Management Platform",
     tagline: "LMS + virtual classroom + educational CMS + assessment + gamification",
     categories: ["EdTech", "Frontend", "Full Stack"],
     featured: true,
-    priority: 4,
+    priority: 7,
     problem:
       "Running live classes, tracking student progress and keeping learning engaging usually means stitching together separate tools for scheduling, content, quizzes and games. This platform brings them into one product for students, teachers and admins.",
     users: ["Students", "Teachers", "Administrators"],
@@ -390,13 +390,13 @@ export const projects: Project[] = [
   // 5 — RITE RESTAURANT ------------------------------------------------
   {
     id: "rite-restaurant",
-    slug: "rite-restaurant",
+    slug: "restaurant-operations",
     title: "Restaurant Operations & Marketing Platform",
-    shortTitle: "Rite Restaurant",
+    shortTitle: "Restaurant Operations Platform",
     tagline: "Business-critical SaaS for menu, order and marketing operations across locations",
     categories: ["SaaS", "Full Stack", "Frontend"],
     featured: true,
-    priority: 5,
+    priority: 8,
     problem:
       "Multi-location restaurants need one system to manage menus, orders, delivery, staff and marketing — instead of ad-hoc spreadsheets and disconnected tools per location.",
     users: ["Restaurant admins", "Restaurant/client staff", "Customers"],
@@ -469,13 +469,13 @@ export const projects: Project[] = [
   // 6 — HOMEPROS ------------------------------------------------
   {
     id: "homepros",
-    slug: "homepros",
-    title: "HomePros — B2B2C Home Services Management Platform",
-    shortTitle: "HomePros",
+    slug: "home-services-management",
+    title: "Home Services & Field Operations",
+    shortTitle: "Home Services Management",
     tagline: "Service management + CRM + lead management for home service businesses",
     categories: ["SaaS", "Full Stack", "Frontend"],
     featured: true,
-    priority: 6,
+    priority: 11,
     problem:
       "Home service businesses (cleaning, HVAC, water restoration, roofing, water mitigation) need to manage appointments, multiple customer properties, employees and referral leads in one place, while customers need a simple way to book and track service.",
     users: ["Businesses", "Customers", "Employees", "Referral partners", "Platform admins"],
@@ -530,13 +530,13 @@ export const projects: Project[] = [
   // 7 — INSTANT DELIVERY ------------------------------------------------
   {
     id: "instant-delivery",
-    slug: "instant-delivery",
-    title: "Instant Delivery — Reusable Ordering & Delivery Platform",
-    shortTitle: "Instant Delivery",
+    slug: "ordering-delivery-platform",
+    title: "White-label Ordering & Delivery Platform",
+    shortTitle: "Ordering & Delivery Platform",
     tagline: "A configurable, embeddable ordering platform built for reuse across businesses",
     categories: ["SaaS", "Full Stack", "Frontend"],
     featured: true,
-    priority: 7,
+    priority: 12,
     problem:
       "Restaurants and businesses in the US needed an online ordering and delivery experience they could deploy under their own branding without building a new platform from scratch each time.",
     users: ["Customers ordering food/goods", "Restaurant/business operators"],

@@ -8,7 +8,6 @@ import TechStack from "../sections/TechStack";
 import FeaturedWork from "../sections/FeaturedWork";
 import Architecture from "../sections/Architecture";
 import Experience from "../sections/Experience";
-import Education from "../sections/Education";
 import Resume from "../sections/Resume";
 import Contact from "../sections/Contact";
 
@@ -44,11 +43,10 @@ export default function Home() {
       <Hero />
       <About />
       <Snapshot />
+      <TechStack />
       <Experience />
       <FeaturedWork />
-      <TechStack />
       <Architecture />
-      <Education />
       <Resume />
       <Contact />
     </>

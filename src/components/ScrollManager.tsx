@@ -10,8 +10,8 @@ export default function ScrollManager() {
       const el = document.getElementById(location.hash.slice(1));
       if (el) {
         // Wait a tick so the target page has rendered.
-        requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
-        return;
+        const frame = requestAnimationFrame(() => el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" }));
+        return () => cancelAnimationFrame(frame);
       }
     }
     window.scrollTo({ top: 0 });

@@ -4,7 +4,7 @@ export default function TechStack() {
   return (
     <section id="skills" className="border-b border-[var(--color-border)] py-20 sm:py-24">
       <div className="container-page">
-        <p className="section-eyebrow">Tech Stack</p>
+        <p className="section-eyebrow">02 / The toolkit</p>
         <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">What I build with</h2>
         <p className="mt-3 max-w-xl text-[var(--color-text-dim)]">
           Organized by where it sits in a product, not as one long keyword wall.

@@ -25,7 +25,7 @@ export default function About() {
     <section id="about" className="border-b border-[var(--color-border)] py-20 sm:py-24">
       <div className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div>
-          <p className="section-eyebrow">About</p>
+          <p className="section-eyebrow">01 / Behind the build</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
             Requirements in. Production applications out.
           </h2>
@@ -42,6 +42,11 @@ export default function About() {
           </div>
 
           <div className="space-y-4 text-[var(--color-text-dim)]">
+            <p>
+              {siteConfig.yearsExperience} years turning business requirements into production applications — across
+              Healthcare, AI, EdTech, SaaS, restaurant technology, service platforms and e-commerce. I take products
+              from requirements through architecture, build and deployment, not just the tickets in between.
+            </p>
             <p>
               Sahil is a Software Engineer with {siteConfig.yearsExperience} years of experience turning complex
               business requirements into usable, production applications — primarily in React and React Native,

@@ -14,7 +14,7 @@ export default function FeaturedWork() {
   return (
     <section id="work" className="border-b border-[var(--color-border)] py-20 sm:py-24">
       <div className="container-page">
-        <p className="section-eyebrow">Selected Work</p>
+        <p className="section-eyebrow">04 / Selected work</p>
         <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Case studies, not just credits</h2>
         <p className="mt-3 max-w-2xl text-[var(--color-text-dim)]">
           Seven products across healthcare, AI, EdTech, SaaS and delivery — each with role, architecture,

@@ -1,44 +1,59 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
+import { render, routes, aliases, origin, projectChecks, filterProjects } from "../.prerender/prerender.js";
 
-const domain = "https://sahilvakte.dev";
-const pages = [
-  ["/about", "About Sahil Vakte | Software Engineer & Product Engineer", "Meet Sahil Vishnu Vakte, a Software Engineer in Pune with 4+ years of experience in React.js, React Native, Django, Node.js, frontend architecture and product delivery."],
-  ["/work", "Sahil Vakte | Software Engineering Projects & Case Studies", "Explore Sahil Vakte's software engineering case studies across healthcare EMR, AI computer vision, EdTech, SaaS, home services and delivery platforms."],
-  ["/contact", "Contact Sahil Vakte | Software Engineer in Pune", "Contact Sahil Vishnu Vakte, a Software Engineer and React developer in Pune, Maharashtra, for frontend, full-stack and product engineering opportunities."],
-  ["/work/openemr-healthcare-platform", "OpenEMR Healthcare EMR Platform | Sahil Vakte", "A healthcare EMR case study by Sahil Vakte: a React and Django REST Framework application integrated with OpenEMR for clinical workflows, telehealth, billing and healthcare services."],
-  ["/work/rite-clinic", "Rite Clinic | React Native Healthcare Platform — Sahil Vakte", "A React Native healthcare and wellness platform for appointments, clinical forms, exercise, nutrition and secure API-driven patient experiences."],
-  ["/work/ai-exercise-tracker", "AI Exercise Tracker | Computer Vision Project — Sahil Vakte", "A real-time exercise tracking project built with React, TensorFlow.js, MoveNet and MediaPipe for browser pose estimation, rep counting and form analysis."],
-  ["/work/rite-tutor", "Rite Tutor | EdTech & Virtual Classroom Platform — Sahil Vakte", "An EdTech platform built with React and REST APIs for virtual classrooms, learning management, assessments, educational content and Zoom live sessions."],
-  ["/work/rite-restaurant", "Restaurant Operations & Marketing Platform — Sahil Vakte", "A React SaaS platform for restaurant menu, order, multi-location operations and marketing workflows with Stripe, delivery and messaging integrations."],
-  ["/work/homepros", "HomePros | B2B2C Home Services Platform — Sahil Vakte", "A React B2B2C home-services platform combining service management, CRM, lead management and role-based workflows for businesses, employees and customers."],
-  ["/work/instant-delivery", "Instant Delivery Platform | React + Stripe + Uber Direct — Sahil Vakte", "A reusable React ordering and delivery platform with configurable storefronts, checkout, Stripe payments, Uber Direct integration and REST APIs."],
-];
+const source = await readFile("dist/index.html", "utf8");
+const escapeHtml = value => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+const template = source
+ .replace(/<title[^>]*>[\s\S]*?<\/title>/g, "")
+ .replace(/<meta\b[^>]*(?:name|property)="(?:description|robots|og:[^"]+|twitter:[^"]+)"[^>]*>/g, "")
+ .replace(/<link\b[^>]*rel="canonical"[^>]*>/g, "");
 
-const escapeHtml = (value) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-const source = await readFile(join("dist", "index.html"), "utf8");
-
-for (const [path, title, description] of pages) {
-  const url = `${domain}${path}`;
-  const safeTitle = escapeHtml(title);
-  const safeDescription = escapeHtml(description);
-  let html = source
-    .replace(/<title[^>]*>.*?<\/title>/s, `<title data-rh="true">${safeTitle}</title>`)
-    .replace(/<meta\s+name="description"\s+content="[^"]*"[^>]*\/?>/s, `<meta name="description" content="${safeDescription}" data-rh="true" />`)
-    .replace(/<link\s+rel="canonical"\s+href="[^"]*"[^>]*\/?>/s, `<link rel="canonical" href="${url}" data-rh="true" />`)
-    .replace(/<meta\s+property="og:title"\s+content="[^"]*"[^>]*\/?>/s, `<meta property="og:title" content="${safeTitle}" data-rh="true" />`)
-    .replace(/<meta\s+property="og:description"\s+content="[^"]*"[^>]*\/?>/s, `<meta property="og:description" content="${safeDescription}" data-rh="true" />`)
-    .replace(/<meta\s+property="og:url"\s+content="[^"]*"[^>]*\/?>/s, `<meta property="og:url" content="${url}" data-rh="true" />`)
-    .replace(/<meta\s+name="twitter:title"\s+content="[^"]*"[^>]*\/?>/s, `<meta name="twitter:title" content="${safeTitle}" data-rh="true" />`)
-    .replace(/<meta\s+name="twitter:description"\s+content="[^"]*"[^>]*\/?>/s, `<meta name="twitter:description" content="${safeDescription}" data-rh="true" />`);
-
-  if (path.startsWith("/work/")) html = html.replace('property="og:type" content="website"', 'property="og:type" content="article"');
-  const output = join("dist", path.slice(1), "index.html");
-  await mkdir(dirname(output), { recursive: true });
-  await writeFile(output, html);
+async function page(route, output) {
+ let markup = render(route);
+ // React 19 emits native document metadata and image preloads at the front of SSR output.
+ const head = [];
+ markup = markup.replace(/<title\b[^>]*>[\s\S]*?<\/title>|<meta\b[^>]*>|<link\b[^>]*>/g, tag => { head.push(tag); return ""; });
+ if (!head.some(tag => tag.startsWith("<title"))) throw new Error("Missing SSR title: " + route);
+ if (!markup.includes("<h1")) throw new Error("Missing rendered content: " + route);
+ const html = template.replace("</head>", head.join("\n") + "\n</head>").replace('<div id="root"></div>', '<div id="root">' + markup + "</div>");
+ await mkdir(dirname(output), { recursive: true });
+ await writeFile(output, html);
+ return html;
 }
+for (const route of routes) {
+ const output = route === "/" ? "dist/index.html" : join("dist", route.slice(1), "index.html");
+ await page(route, output);
+}
+await page("/404", "dist/404.html");
+for (const [oldSlug,newSlug] of Object.entries(aliases)) {
+ const target = "/work/" + newSlug;
+ const file = join("dist","work",oldSlug,"index.html");
+ await mkdir(dirname(file), {recursive:true});
+ await writeFile(file, '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=' + target + '"><link rel="canonical" href="' + origin + target + '"><title>Case study moved</title></head><body><a href="' + target + '">Continue to case study</a></body></html>');
+}
+const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + routes.map(route => '  <url><loc>' + escapeHtml(origin + route) + '</loc></url>').join("\n") + "\n</urlset>\n";
+await writeFile("public/sitemap.xml",sitemap);
+await writeFile("dist/sitemap.xml",sitemap);
+await writeFile("dist/robots.txt","User-agent: *\nAllow: /\n\nSitemap: "+origin+"/sitemap.xml\n");
+const report = [];
+for (const project of projectChecks) {
+ const html = await readFile(join("dist","work",project.slug,"index.html"),"utf8");
+ if (!html.includes(escapeHtml(project.title))) throw new Error("Missing project content: "+project.slug);
+ if (!html.includes("Automation &amp; workflow engineering")) throw new Error("Missing automation: "+project.slug);
+ if (project.healthcare && !html.includes("FHIR &amp; HIPAA engineering context")) throw new Error("Missing healthcare context: "+project.slug);
+ const canonicals = html.match(/rel="canonical"/g) ?? [];
+ const titles = html.match(/<title\b/g) ?? [];
+ if (canonicals.length!==1 || titles.length!==1) throw new Error("Duplicate metadata: "+project.slug);
+ for(const match of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
+ report.push({slug:project.slug,prerendered:true,automation:project.automation,healthcareContext:project.healthcare});
+}
+await writeFile(".prerender/verification.json",JSON.stringify({routes:routes.length,projects:report},null,2));
+console.log("Prerendered "+routes.length+" complete pages, verified "+report.length+" case studies and generated "+Object.keys(aliases).length+" legacy redirects.");
 
-const notFound = source
-  .replace(/<title[^>]*>.*?<\/title>/s, '<title data-rh="true">Page not found | Sahil Vakte</title>')
-  .replace('content="index, follow, max-image-preview:large"', 'content="noindex, follow"');
-await writeFile(join("dist", "404.html"), notFound);
+if (!filterProjects("mcp").some(p=>p.slug==="growth-crm-platform")) throw new Error("MCP search failed");
+if (!filterProjects("voice retell","AI & Voice").some(p=>p.slug==="business-voice-ai")) throw new Error("Combined voice search failed");
+if (filterProjects("unlikely-no-match-7391").length) throw new Error("Empty search state failed");
+if (filterProjects("","Healthcare").length!==7) throw new Error("Healthcare filtering failed");
+if (filterProjects("","All").length!==26) throw new Error("Complete project archive failed");
+console.log("Project search and domain-filter checks passed.");

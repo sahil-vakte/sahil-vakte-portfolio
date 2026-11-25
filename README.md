@@ -1,5 +1,50 @@
 # Sahil Vakte — Portfolio
 
+## Expanded portfolio revision - 25 November 2026
+
+Current implementation supersedes earlier refresh notes below.
+
+- Positioning: full-stack product engineering from product planning, scope and architecture through implementation, integration, validation, delivery and support.
+- 26 descriptive case studies. Featured: marketing automation/MCP, business Voice AI, healthcare EMR, clinical FHIR documents, warehouse inventory and recruitment/consultant CRM.
+- All five main project families under the Avrix directory are represented. Additional D: projects cover dental operations, device-connected wellness, community/nonprofit systems, geospatial tools, engineering enquiries and AI document tutoring.
+- Every case has a dedicated automation/workflow section; manual or prototype boundaries are explicit.
+- All seven healthcare cases explain FHIR integration context, observed safeguards and HIPAA deployment responsibilities. Informational websites and custom portal APIs are not misrepresented as standards-compliant clinical systems.
+- Searchable project archive and 11 domain-filter options, six initial homepage case studies, one portrait.
+
+### Rendering and SEO
+
+The build type-checks, builds client assets, builds src/prerender.tsx into ignored .prerender/, then generates complete HTML for 30 routes. React hydrates those pages in production. Scripts generate the sitemap, preserve six legacy redirects and validate metadata, project coverage and search results.
+
+The route catalogue is src/data/catalog.ts. Older data files remain as base records. Change a case in the catalogue/base data, then run npm run build; do not manually maintain duplicated route metadata. Structured data includes Person, WebSite, ProfilePage, CollectionPage/ItemList, CreativeWork and BreadcrumbList as applicable.
+
+### Verification boundary
+
+Production build, rendered HTML, HTTP responses, internal links, assets, JSON-LD, unique titles/canonicals, 404 noindex, automation and healthcare coverage were checked. Fresh visual/hydration browser QA was unavailable because the computer-use browser connection could not be opened. The earlier visual checks apply to the prior layout, not a fresh verification of this revision.
+
+No live project integrations were invoked during the audit, and no deployment, Git commit or push was performed. A second source backup is .portfolio-backup-20261125-expanded. Existing resume and employment dates were retained.
+
+References: https://www.hl7.org/fhir/R4/composition.html ; https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html ; https://developers.google.com/search/docs/appearance/structured-data/profile-page
+
+---
+
+## Portfolio refresh — 25 November 2026
+
+The active site now uses src/pages/Portfolio.tsx and src/portfolio.css. Earlier sections and visual components remain in the repository for reference but are not mounted by App.tsx.
+
+- Healthcare / EMR specialization with concrete FHIR R4 document-generation experience.
+- Thirteen descriptive case studies, including warehouse inventory, clinical documentation, dental voice automation, retail, CRM and HR.
+- A short initial selection, domain filters and expandable project coverage.
+- Navy / mint visual system, one portrait, responsive typography, reduced-motion support and keyboard-accessible navigation.
+- Direct email, copy email, LinkedIn and WhatsApp contact actions. The previous contact form is no longer mounted.
+- Descriptive project URLs; six legacy URL aliases remain supported. Build generates route metadata and sitemap from the project data.
+- Production build and all thirteen case-study routes checked. Responsive checks covered narrow mobile, tablet and desktop widths with no horizontal overflow after correction.
+- Existing uncommitted files were backed up before editing to .portfolio-backup-20261125 (ignored by Git).
+- Existing résumé PDF and employment dates retained. Development implementations are labelled; no certification, compliance or business-performance claims were added.
+- FHIR terminology reference: https://www.hl7.org/fhir/overview.html. The clinical documentation source implements R4 document Bundles; this is not a conformance-certification claim.
+
+This section supersedes older design and contact-interface descriptions below. Run npm run dev for local preview; npm run build produces dist/. No deployment or Git push was performed.
+
+
 A production-ready portfolio site built for recruiter conversion: React 19 +
 TypeScript + Vite + Tailwind CSS v4, with routed case-study pages, working
 project filtering, a functional contact form, and configurable resume /
@@ -283,3 +328,26 @@ Projects without a public URL are labeled "Private / Company Project"
 rather than linked to an invented demo. Where a verified outcome/metric
 becomes available, add it to that project's `outcome` field in
 `src/data/projects.ts` — until then, that field is intentionally omitted.
+
+## Cinematic presentation
+
+The existing React / TypeScript / Vite / Tailwind architecture, source data, resume,
+social links, filters, case-study routes and coded product previews are preserved.
+The home page now uses a black/crimson editorial hero, floating section navigation,
+interactive project cards, and a combined experience/education timeline. The resume
+contains no certifications, so no certification content or gallery was fabricated.
+
+- `src/components/CinematicVideo.tsx`: paused video seeking, parallax, fallbacks and motion control.
+- `src/components/PointerEffects.tsx`: desktop cursor, magnetic buttons and scroll progress.
+- `public/video/README.md`: adding the required real cinematic MP4, which was not supplied.
+- `src/index.css`: cinematic styles built on the existing custom properties and Tailwind system.
+
+Native smooth scrolling is retained. Touch and reduced-motion preferences are respected;
+no body scroll lock or extra animation dependency is used. The contact form opens an
+email draft when no endpoint is configured and accurately describes that behavior.
+
+Validation: `npm run lint` and `npm run build`. On Windows with restricted PowerShell
+execution policy use `npm.cmd` for those commands. Browser checks cover desktop/mobile
+layouts, section navigation, filtering, case-study routes, resume delivery and reduced
+motion. The video engine was checked with a temporary synthetic MP4 (removed afterward);
+the actual cinematic footage must still be supplied and verified.

@@ -100,7 +100,7 @@ export default function Contact() {
                 <IconMail className="h-5 w-5 text-[var(--color-accent)]" />
               </div>
               <p className="text-lg font-medium text-[var(--color-text)]">
-                Thanks for reaching out. I'll get back to you soon.
+                {isConfigured ? "Thanks for reaching out. I'll get back to you soon." : "Your email draft is ready. Send it from your email app to get in touch."}
               </p>
               <button type="button" className="btn btn-ghost mt-6" onClick={() => setStatus("idle")}>
                 Send another message
@@ -183,8 +183,7 @@ export default function Contact() {
 
               {!isConfigured && (
                 <p className="mt-3 text-xs text-[var(--color-text-faint)]">
-                  This form currently opens your email client to send — connect a form endpoint in{" "}
-                  <code className="font-mono">src/data/config.ts</code> for direct inbox delivery. See README.md.
+                  Opens a draft in your email app. Review it and press send there.
                 </p>
               )}
             </form>

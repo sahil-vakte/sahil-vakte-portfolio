@@ -10,16 +10,12 @@ import primaryResumePath from "../assets/resume/Sahil_Vakte_Resume.pdf?url";
 export const siteConfig = {
   name: "Sahil Vishnu Vakte",
   shortName: "Sahil Vakte",
-  role: "Software Engineer",
-  tagline: "React.js • React Native • Product Engineering",
+  role: "Full-stack Developer & Product Engineer",
+  tagline: "Product Architecture · AI & MCP · Automation · Healthcare · SaaS",
   location: "Pune, Maharashtra, India",
   yearsExperience: "4+",
 
-  // Placeholder only — no domain has been registered for this project.
-  // Set this to your real deployed domain before going live (it drives
-  // canonical URLs and Open Graph tags), and update public/robots.txt and
-  // public/sitemap.xml to match. ".example" is a reserved, non-purchasable
-  // TLD (RFC 2606) used here specifically so this never resolves to a real site.
+  // Canonical origin retained from the existing portfolio deployment configuration.
   siteUrl: "https://sahilvakte.dev",
 
   // --- Availability -----------------------------------------------------
