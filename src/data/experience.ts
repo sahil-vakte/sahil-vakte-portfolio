@@ -18,14 +18,15 @@ export const experience: ExperienceEntry[] = [
     start: "June 2023",
     end: "Present",
     summary:
-      "Owns the product lifecycle across multiple concurrent applications: product planning, requirements and roadmap, user journeys, system and application architecture, frontend/backend development, third-party integrations, automation, testing, deployment and ongoing support.",
+      "Owns the product lifecycle across multiple concurrent applications: product planning, requirements and priorities, stakeholder communication, team coordination, user journeys, system and application architecture, frontend/backend development, third-party integrations, automation, testing, deployment and ongoing support.",
     highlights: [
       "Product planning and delivery across healthcare, AI voice, marketing automation, education, commerce and operational SaaS",
       "Patient, provider and administrative experiences across React web and React Native mobile applications",
       "Requirements, scope, user-flow design, architecture decisions and technical planning with cross-functional teams",
       "Django/DRF and Node.js API integration for clinical records, appointments and multi-role workflows",
       "Third-party service integration (payments, telehealth, communications, clinical systems)",
-      "Testing, debugging, deployment and ongoing production support",
+      "Task breakdown, dependency coordination, release validation, AWS deployment and production support",
+      "HIPAA-aware clinical information handling, access controls and auditability",
     ],
     stack: ["React", "React Native", "Django", "Django REST Framework", "Node.js", "MySQL", "MongoDB", "AWS"],
   },

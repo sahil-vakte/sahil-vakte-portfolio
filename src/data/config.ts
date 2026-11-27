@@ -10,8 +10,8 @@ import primaryResumePath from "../assets/resume/Sahil_Vakte_Resume.pdf?url";
 export const siteConfig = {
   name: "Sahil Vishnu Vakte",
   shortName: "Sahil Vakte",
-  role: "Full-stack Developer & Product Engineer",
-  tagline: "Product Architecture · AI & MCP · Automation · Healthcare · SaaS",
+  role: "Product Engineer & Full-Stack Developer",
+  tagline: "Product Planning · Architecture · Team Management · Delivery",
   location: "Pune, Maharashtra, India",
   yearsExperience: "4+",
 
@@ -23,7 +23,7 @@ export const siteConfig = {
   // It is the single toggle that drives the "Open to Opportunities" badge.
   availability: {
     open: true,
-    label: "Open to Opportunities",
+    label: "Remote roles & freelance product engagements",
   },
 } as const;
 

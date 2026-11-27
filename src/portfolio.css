@@ -55,3 +55,14 @@
 
 /* Readable brand and technology evidence links at compact widths. */
 .tech-evidence{font-size:.8rem;line-height:1.6;margin-top:16px}.tech-card h3{line-height:1.4}.wordmark{white-space:nowrap}.wordmark>span{color:#3269ce}@media(max-width:540px){.wordmark{font-size:1.5rem}.navigation{gap:10px}.nav-contact{padding:9px 12px;font-size:.8rem}.menu-toggle{padding:8px 10px}}
+
+/* Product ownership: balanced long headlines and six delivery stages. */
+.hero h1{font-size:clamp(2.4rem,4.2vw,4rem);line-height:1.12;overflow-wrap:normal}
+.hero-grid>*{min-width:0}.hero .eyebrow{line-height:1.6}.portrait figcaption{gap:12px}
+.delivery-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+.delivery-steps li:nth-child(3n+1){border-left:0}.delivery-steps li:nth-child(n+4){border-top:1px solid #e1e5ed}
+.tech-card p,.delivery-steps p{font-size:1rem}.tech-pills span,.project-stack span{font-size:.875rem}
+.project-body .ownership-label{font-size:.875rem!important}.art-top,.system-flow{font-size:.75rem}.art-constraints{font-size:.875rem}
+.project-card,.tech-card,.case-meta>div{min-width:0}.email-address,.case-meta dd,.case-header h1{overflow-wrap:anywhere}
+@media(max-width:760px){.hero h1{font-size:clamp(2.25rem,7.8vw,3.6rem)}.delivery-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.delivery-steps li{border-left:0;border-top:1px solid #e1e5ed}.delivery-steps li:nth-child(even){border-left:1px solid #e1e5ed}.domain-strip .shell{font-size:.875rem}.portrait{width:100%}}
+@media(max-width:540px){.delivery-steps{grid-template-columns:1fr}.delivery-steps li:nth-child(even){border-left:0}.hero h1{font-size:clamp(2rem,8.5vw,2.9rem)}.hero-proof{gap:20px}.hero-proof span{font-size:.875rem}.hero .actions{flex-wrap:wrap}.domain-strip .shell{grid-template-columns:1fr}.case-header h1{font-size:clamp(1.85rem,8vw,2.3rem)}}

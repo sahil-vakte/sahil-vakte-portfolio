@@ -17,13 +17,13 @@ export default function SEO({
   description,
   path,
   image,
-  imageAlt = "Sahil Vakte — Software Engineer portfolio",
+  imageAlt = "Sahil Vakte — Product engineering, architecture and delivery",
   type = "website",
   noIndex = false,
   structuredData,
 }: SEOProps) {
   const url = `${siteConfig.siteUrl}${path}`;
-  const ogImage = image ?? `${siteConfig.siteUrl}/og-image.png`;
+  const ogImage = image ?? `${siteConfig.siteUrl}/og-product-engineering.png`;
   const schemas = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
 
   return (
@@ -39,8 +39,8 @@ export default function SEO({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:width" content="1732" />
+      <meta property="og:image:height" content="908" />
       <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:site_name" content={siteConfig.shortName} />
       <meta property="og:locale" content="en_IN" />

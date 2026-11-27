@@ -57,3 +57,21 @@ if (filterProjects("unlikely-no-match-7391").length) throw new Error("Empty sear
 if (filterProjects("","Healthcare").length!==7) throw new Error("Healthcare filtering failed");
 if (filterProjects("","All").length!==26) throw new Error("Complete project archive failed");
 console.log("Project search and domain-filter checks passed.");
+
+// Verify public metadata and key positioning in the actual rendered HTML.
+const home = await readFile("dist/index.html", "utf8");
+for (const term of ["Team management", "Node.js", "AWS", "HIPAA", "Geospatial", "Coordinate the team"]) {
+ if (!home.includes(term)) throw new Error("Missing homepage positioning: " + term);
+}
+if ((home.match(/class="project-card"/g) ?? []).length !== 9) throw new Error("Expected nine selected projects");
+if (!filterProjects("geospatial").some(p=>p.slug==="property-roof-intelligence")) throw new Error("Geospatial search failed");
+for (const route of routes) {
+ const file = route === "/" ? "dist/index.html" : join("dist", route.slice(1), "index.html");
+ const html = await readFile(file, "utf8");
+ for (const [label, pattern] of [["title", /<title\b/g], ["canonical", /rel="canonical"/g], ["description", /name="description"/g], ["h1", /<h1\b/g]]) {
+  if ((html.match(pattern) ?? []).length !== 1) throw new Error("Expected one " + label + ": " + route);
+ }
+ if (!html.includes("og-product-engineering.png")) throw new Error("Missing social preview: " + route);
+ for (const match of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
+}
+console.log("Verified positioning, nine featured projects, geospatial search and metadata across every route.");

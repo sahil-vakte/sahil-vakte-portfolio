@@ -6,9 +6,9 @@ const expandedProjects: (Project & {automation: CapabilityGroup[]})[] = [
   {
     "id": "business-voice-ai",
     "slug": "business-voice-ai",
-    "title": "Business Voice AI & Receptionist Platform",
-    "shortTitle": "Business Voice AI & Receptionist Platform",
-    "tagline": "Multi-business voice reception, bookings, follow-ups and campaign operations.",
+    "title": "Conversational AI & Business Operations Platform",
+    "shortTitle": "Conversational AI & Business Operations Platform",
+    "tagline": "Business-specific conversations connected to booking, consent-aware campaigns, durable jobs and billing reconciliation.",
     "categories": [
       "AI",
       "SaaS",
@@ -518,8 +518,8 @@ const expandedProjects: (Project & {automation: CapabilityGroup[]})[] = [
   {
     "id": "property-roof-intelligence",
     "slug": "property-roof-intelligence",
-    "title": "Property & Aerial Imagery Intelligence",
-    "shortTitle": "Property & Aerial Imagery Intelligence",
+    "title": "Geospatial Property & Aerial Imagery Intelligence",
+    "shortTitle": "Geospatial Property & Aerial Imagery Intelligence",
     "tagline": "Property records and historical aerial imagery in a coordinated mapping workspace.",
     "categories": [
       "SaaS",
@@ -1643,7 +1643,7 @@ const overrides: Record<string,Partial<Project>> = {"growth-crm-platform":{
     "Automation needs execution-time checks: consent, replies, budgets and conditions may change after a task is scheduled."
   ]
 }};
-const priorities: Record<string,number> = {"growth-crm-platform":1,"business-voice-ai":5,"healthcare-emr-platform":3,"clinical-documentation-fhir":2,"warehouse-inventory-management":4,"recruitment-consultant-crm":6,"dental-practice-automation":7,"patient-wellness-mobile":8,"restaurant-operations":9,"email-campaign-crm":10,"dental-operations-platform":11,"ordering-delivery-platform":12,"retail-fulfilment-platform":13,"learning-management-platform":14,"connected-wellness-mobile":15,"vision-document-tutor":16,"ai-exercise-tracker":17,"corporate-website-platform":18,"specialist-practice-website":19,"property-roof-intelligence":20,"engineering-enquiry-platform":21,"nonprofit-service-management":22,"community-housing-platform":23,"home-services-management":24,"hr-workforce-management":25,"product-design-prototypes":26};
+const priorities: Record<string,number> = {"growth-crm-platform":1,"clinical-documentation-fhir":2,"healthcare-emr-platform":3,"business-voice-ai":4,"warehouse-inventory-management":5,"recruitment-consultant-crm":6,"dental-operations-platform":7,"property-roof-intelligence":8,"nonprofit-service-management":9,"dental-practice-automation":10,"patient-wellness-mobile":11,"restaurant-operations":12,"email-campaign-crm":13,"ordering-delivery-platform":14,"retail-fulfilment-platform":15,"learning-management-platform":16,"connected-wellness-mobile":17,"vision-document-tutor":18,"ai-exercise-tracker":19,"corporate-website-platform":20,"specialist-practice-website":21,"engineering-enquiry-platform":22,"community-housing-platform":23,"home-services-management":24,"hr-workforce-management":25,"product-design-prototypes":26};
 export const allProjects: PortfolioProject[] = [...projects,...additionalProjects,...expandedProjects].map(base=>{
  const project={...base,...overrides[base.slug]};
  const ownedRole = project.role.startsWith("End-to-end") ? project.role : "I work from product planning, requirements and user journeys through architecture, implementation, integration, testing and delivery. Implementation focus: " + project.role;
