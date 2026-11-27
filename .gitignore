@@ -26,3 +26,6 @@ dist-ssr
 .portfolio-backup-*/
 
 .prerender/
+
+# Local PDF review renders
+tmp/pdfs/
